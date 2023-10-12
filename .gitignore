@@ -3,6 +3,7 @@
 /logs
 /myenv
 /order_review_files
+/customer_files
 airflow.db
 standalone_admin_password.txt
 .ipynb
