@@ -9,7 +9,7 @@ from airflow.utils.dates import days_ago
 from datetime import datetime
 from datetime import timedelta
 import pandas as pd
-import pyarrow
+
 
 ### Funções para Python Operator
 def clean_data():
@@ -95,12 +95,17 @@ with DAG(
     )
 
     task_7 = BashOperator(
-        task_id = 'limpa_pasta_local',
+        task_id = 'limpa_pasta_local_parquet',
         bash_command= 'rm /home/jesus/Documentos/repos2/olist_data_project/customer_files/*.parquet'
     )
 
-    task_8 = EmptyOperator(
+    task_8 = BashOperator(
+        task_id = 'limpa_pasta_local_csv',
+        bash_command= 'rm /home/jesus/Documentos/repos2/olist_data_project/customer_files/*.csv'
+    )
+
+    task_9 = EmptyOperator(
         task_id='fim'
     )
 
-task_1 >>  task_2 >> task_3 >> task_4 >> task_5 >> [task_6 , task_7] >> task_8
+task_1 >>  task_2 >> task_3 >> task_4 >> task_5 >> [task_6 , task_7 , task_8] >> task_9
