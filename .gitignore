@@ -4,6 +4,8 @@
 /myenv
 /order_review_files
 /customer_files
+/payment_files
+/products_files
 airflow.db
 standalone_admin_password.txt
 .ipynb
