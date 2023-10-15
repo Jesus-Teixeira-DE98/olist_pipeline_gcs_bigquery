@@ -51,9 +51,9 @@ default_args = {
 }
 
 with DAG(
-    'products_gcs_to_bigquery',
+    'sellers_gcs_to_bigquery',
     default_args=default_args,
-    description='DAG responsável pela orquestração do pipeline da dimensão products',
+    description='DAG responsável pela orquestração do pipeline da dimensão sellers',
     schedule_interval='@daily'
     ) as dag:
 
@@ -126,4 +126,5 @@ with DAG(
     task_12 = EmptyOperator(
         task_id='fim'
     )
+    
 task_1 >> task_2 >> task_3 >> task_4 >> task_5 >> [task_6, task_7] >> task_8 >> task_9 >> task_10 >> task_11 >> task_12
